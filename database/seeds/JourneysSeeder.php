@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\Models\Journey;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+
 
 class JourneysSeeder extends Seeder
 {
@@ -11,26 +13,25 @@ class JourneysSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $journeys = [
-            'country'=>'country',
-            'region'=>'region',
-            'city'=>'city',
-            'location'=>'location di prova',
-            'date_start'=>'2021/10/20',
-            'duration'=>10,
-            'placement'=>'pacement',
-            'service'=>'service',
-            'description'=>'description',
-            'available'=>true,
-            'price'=>19.99
-        ];
-
+        // $faker = Faker\Factory::create();
+        
         for($i = 0; $i < 50; $i++)
         {
             $newJourney = new Journey();
-            $newJourney->fill($journeys);
+            // $newJourney->fill($journeys);
+            $newJourney->country = $faker->words(2,true);
+            $newJourney->region = $faker->words(2,true);
+            $newJourney->city = $faker->words(2,true);
+            $newJourney->location = $faker->words(5,true);
+            $newJourney->date_start = $faker->date('Y_m_d');
+            $newJourney->duration = $faker->randomNumber(2,false);
+            $newJourney->placement = $faker->paragraph(2);
+            $newJourney->service = $faker->paragraph(2);
+            $newJourney->description = $faker->text(400);
+            $newJourney->available = $faker->numberBetween(0,1);
+            $newJourney->price = $faker->randomFloat(2,1,999999);
             $newJourney->slug = Str::slug($newJourney->location, '-');
             $newJourney->save();
         }
