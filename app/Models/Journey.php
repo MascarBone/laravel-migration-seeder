@@ -9,5 +9,5 @@ class Journey extends Model
 {
     use SoftDeletes;
 
-    private $fillable = ['country','region','city','location','date_start','duration'.'placement','service','description','available','price'];
+    protected $fillable = ['country','region','city','location','date_start','duration','placement','service','description','available','price'];
 }

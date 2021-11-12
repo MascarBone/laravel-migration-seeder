@@ -21,11 +21,11 @@ class CreateJourneysTable extends Migration
             $table->string('location',100);
             $table->date('date_start');
             $table->smallInteger('duration');
-            $table->string('placemnet', 255);
+            $table->string('placement', 255);
             $table->string('service',255);
             $table->text('description');
             $table->boolean('available')->nullable();
-            $table->float('price',8,6)->unsigned();
+            $table->float('price',8,2)->unsigned();
             $table->timestamps();
         });
     }
